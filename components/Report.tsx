@@ -1,7 +1,6 @@
 "use client";
 import { useState } from 'react';
-import { Map } from '@/components/maps/Map';
-import { Geocoder } from './maps/GeoCoder';
+import { MapWithSearch } from './MapWithSearch';
 import { createReport as createReportService } from '@/components/services/reports';
 
 interface ReportForm {
@@ -23,26 +22,13 @@ const ReportPage: React.FC = () => {
     location: '',
   });
 
-  const [selectedMarker, setSelectedMarker] = useState<{ latitude: number; longitude: number } | undefined>(undefined);
-
-  const handleSelectCoords = (coords: { latitude: number; longitude: number }) => {
+  const handleLocationChange = (data: { latitude: number; longitude: number; location?: string }) => {
     setForm(f => ({
       ...f,
-      latitude: coords.latitude,
-      longitude: coords.longitude,
-      location: `Lat: ${coords.latitude}, Lng: ${coords.longitude}`
-    }));
-    setSelectedMarker(coords);
-  };
-
-  const handleGeocoderResult = (data: { location: string; latitude: number; longitude: number }) => {
-    setForm(f => ({
-      ...f,
-      location: data.location,
       latitude: data.latitude,
       longitude: data.longitude,
+      location: data.location || f.location,
     }));
-    setSelectedMarker({ latitude: data.latitude, longitude: data.longitude });
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -152,9 +138,7 @@ const ReportPage: React.FC = () => {
 
       <input type="file" multiple onChange={handleFileChange} />
 
-      <Geocoder onResult={handleGeocoderResult} />
-
-      <Map onSelect={handleSelectCoords} initialMarker={selectedMarker} />
+      <MapWithSearch onLocationChange={handleLocationChange} showRadius radiusKm={5} height="350px" />
 
       <button
         onClick={createReport}
