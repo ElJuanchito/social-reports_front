@@ -5,7 +5,6 @@ import { useSearchParams } from "next/navigation";
 import { useState , useEffect} from "react";
 import { useRouter } from "next/navigation";
 import { useModal } from "@/components/ModalContext";
-import { Modal } from "@/components/Modal";
 import { motion, AnimatePresence } from "framer-motion";
 
 const modes = [
@@ -165,8 +164,16 @@ function Signup({ initialEmail = "" }: { initialEmail?: string }) {
       try {
         const { getCities } = await import("./services/auth");
         const data = await getCities();
-        // Si data.cities existe, úsalo, si no, usa data directamente
-        setCities(Array.isArray(data) ? data : data.message || []);
+        // Corrige para soportar ambos formatos de respuesta
+        if (Array.isArray(data)) {
+          setCities(data);
+        } else if (Array.isArray(data.cities)) {
+          setCities(data.cities);
+        } else if (Array.isArray(data.message)) {
+          setCities(data.message);
+        } else {
+          setCities([]);
+        }
       } catch {
         setCities([]);
       }
