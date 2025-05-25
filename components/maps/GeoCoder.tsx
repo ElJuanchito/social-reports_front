@@ -1,7 +1,8 @@
 // components/Geocoder.tsx
-
+"use client";
 type Viewport = {
     center: [number, number];
+    
     zoom: number;
     bearing?: number;
     pitch?: number;
