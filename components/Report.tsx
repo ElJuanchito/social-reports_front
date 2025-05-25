@@ -1,7 +1,7 @@
+
 "use client";
 import { useState } from 'react';
 import { Map } from '@/components/maps/Map';
-import axios from 'axios';
 import { Geocoder } from './maps/GeoCoder';
 import { createReport as createReportService } from '@/components/services/reports';
 

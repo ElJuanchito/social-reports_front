@@ -1,3 +1,5 @@
+import ReportPage from '../../../components/Report';
+
 export default function Page() {
-    return <div className="">create</div>;
+    return <ReportPage />;
 }
