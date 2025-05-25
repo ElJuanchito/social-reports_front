@@ -1,10 +1,6 @@
 import { API_BASE_URL } from '@/components/services/index';
 import Image from 'next/image';
 
-interface ReportDetailProps {
-  params: { id: string };
-}
-
 async function getReport(id: string) {
   const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
   const res = await fetch(`${API_BASE_URL}/reports/${id}`, {
@@ -25,7 +21,10 @@ async function getComments(id: string) {
   return res.json();
 }
 
-export default async function Page({ params }: ReportDetailProps) {
+export default async function Page({ params }: {params:{id: string}}) {
+  if (!params || !params.id) {
+    return <div className="text-red-500">No se pudo cargar el reporte.</div>;
+  }
   const { id } = params;
   let report: {
     title: string;
