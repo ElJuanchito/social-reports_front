@@ -1,0 +1,1589 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/api/users/{id}": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "obtener informacion de usuario",
+        "description": "Entrega la informacion del usuario mediante su id",
+        "operationId": "getUserInfo",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOUserInfoDTO"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Actualizar datos del usuario",
+        "description": "Actualiza los datos de un usuario especifico mediante su id",
+        "operationId": "updateUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOString"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Eliminar usuario",
+        "description": "Marca como eliminado a un usuario de la base de datos mediante su id",
+        "operationId": "deleteUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOString"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/reports/{id}": {
+      "get": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Obtener informacion del reporte",
+        "description": "Entrega la informacion del reporte mediante su id",
+        "operationId": "getReportInfo",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOReportInfoDTO"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Editar reporte",
+        "description": "Edita un reporte con los datos proporcionados en el cuerto de la peticion",
+        "operationId": "updateReport",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "updateReportDTO",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UpdateReportDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOString"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Eliminar reporte",
+        "description": "Elimina un reporte de la base de datos mediante el id del reporte",
+        "operationId": "deleteReport",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOString"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/auth/{email}/resendActivationCode": {
+      "put": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Reenviar codigo de activacion",
+        "description": "Reenvia el codigo de activacion al correo del usuario",
+        "operationId": "resendActivationCode",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/password": {
+      "put": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Cambiar la contrasena del usuario",
+        "description": "modifica la contrasena de usuario",
+        "operationId": "changePassword",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/checkReport": {
+      "put": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Verificar reporte",
+        "description": "Marca un reporte como verificado por un admin",
+        "operationId": "checkReport",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangeStatusDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOString"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/reports": {
+      "post": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Crear reporte",
+        "description": "Crea un reporte con los datos necesarios y lo publica en la plataforma",
+        "operationId": "createReport",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateReportDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOString"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/reports/{id}/important": {
+      "post": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Marcar reporte como importante",
+        "description": "Marca un reporte seleccionado por su id como importante por un usuario",
+        "operationId": "setAsImportant",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOString"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/reports/{id}/comments": {
+      "post": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Agregar comentario",
+        "description": "Permite agregar un comentario a un reporte, mediante el id del reporte y los datos del comentario",
+        "operationId": "addCommentToReport",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOString"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/reports/changeStatus": {
+      "post": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Cambiar estado del reporte",
+        "description": "Cambia el estado de los reportes a resuelto mediante su id",
+        "operationId": "changeStatus",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangeStatusDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOString"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/images/upload": {
+      "post": {
+        "tags": [
+          "images"
+        ],
+        "summary": "Subir imagen",
+        "description": "Permite subir una imagen a la base de datos",
+        "operationId": "uploadImage",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "file"
+                ],
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOString"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/images/delete": {
+      "post": {
+        "tags": [
+          "images"
+        ],
+        "summary": "eliminar imagen",
+        "description": "Permite eliminar una imagen a la base de datos",
+        "operationId": "deleteImage",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOMap"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/auth/{email}/validateUser": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Activar usuario",
+        "description": "Activa un usuario mediante la validacion del codigo que recibio al correo",
+        "operationId": "validateRegisterCode",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/register": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Registrar usuario",
+        "description": "Registra un nuevo usuario en la base de datos",
+        "operationId": "registerUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterUserDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/password/recover": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Enviar email de recuperacion de contrasena",
+        "description": "Envia al usuario un email que contiene el codigo para la recuperacion de la contrasena",
+        "operationId": "sendPasswordResetCode",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Inciar sesion",
+        "description": "Permite iniciar sesion en la plataforma mediante el correo y la contrena",
+        "operationId": "logIn",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogInDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOTokenDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/view": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Generar reporte",
+        "description": "Genera y envia un reporte en pdf al correo del admin",
+        "operationId": "generateViewReport",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ViewReportDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOString"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/admin/resolvedReport": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Marcar como resuelto",
+        "description": "El admin marca un reporte como resuelto",
+        "operationId": "setAsResolved",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangeStatusDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOString"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/admin/refuse": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Rechazar reporte",
+        "description": "Rechaza un reporte por diferentes motivos determinados por el admin",
+        "operationId": "refuseReport",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefuseReportDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOString"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/admin/category": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Crear categoria",
+        "description": "permitir crear una nueva categoria",
+        "operationId": "createCategory",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoryDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOString"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/reports/statuses": {
+      "get": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Obtener lista de estatus",
+        "description": "Se obtiene la lista con todas los estatus disponibles para los reportes",
+        "operationId": "getStatuses",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOListReportStatus"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/reports/getAllComments/{reportId}": {
+      "get": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Obtiener comentarios de reporte",
+        "description": "Se obtiene la lista con todos los comentarios de un reporte",
+        "operationId": "getAllCommentsFromReport",
+        "parameters": [
+          {
+            "name": "reportId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOListCommentDTO"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/reports/categories": {
+      "get": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Obtener lista de categorias",
+        "description": "Se obtiene la lista con todas las categorias disponibles para los reportes",
+        "operationId": "getCategories",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOListCategoryDTO"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/auth/cities": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Obtener lista de ciudades",
+        "description": "Se obtiene la lista con todas las ciudades disponibles para los reportes",
+        "operationId": "getCities",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOListCity"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/users": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Obtener usuarios",
+        "description": "Obtiene la informacion todos los usuarios guardados en la base de datos",
+        "operationId": "getAllUsers",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOListUserInfoDTO"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/admin/report": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Obtener reportes por categoria",
+        "description": "Obtinene todos los reportes de una cateoria",
+        "operationId": "getReportsByCategory",
+        "parameters": [
+          {
+            "name": "categoryName",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageDTOListReportInfoDTO"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UpdateUserDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string",
+            "enum": [
+              "MEDELLIN",
+              "PEREIRA",
+              "BOGOTA",
+              "ARMENIA",
+              "MANIZALES",
+              "CALI"
+            ]
+          },
+          "address": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          }
+        }
+      },
+      "MessageDTOString": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "LocationDTO": {
+        "required": [
+          "latitude",
+          "longitude"
+        ],
+        "type": "object",
+        "properties": {
+          "latitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "UpdateReportDTO": {
+        "required": [
+          "imageUrl",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "categoryName": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "location": {
+            "$ref": "#/components/schemas/LocationDTO"
+          },
+          "imageUrl": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "userId": {
+            "type": "string"
+          }
+        }
+      },
+      "ChangePasswordDTO": {
+        "required": [
+          "newPassword",
+          "recoverCode"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "recoverCode": {
+            "type": "string"
+          },
+          "newPassword": {
+            "maxLength": 16,
+            "minLength": 8,
+            "type": "string"
+          }
+        }
+      },
+      "ChangeStatusDTO": {
+        "required": [
+          "reason",
+          "reportId",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "reportId": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateReportDTO": {
+        "required": [
+          "categoryName",
+          "description",
+          "imageUrl",
+          "location",
+          "title",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "categoryName": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "location": {
+            "$ref": "#/components/schemas/LocationDTO"
+          },
+          "imageUrl": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "userId": {
+            "type": "string"
+          }
+        }
+      },
+      "CommentDTO": {
+        "required": [
+          "comment",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "comment": {
+            "type": "string"
+          }
+        }
+      },
+      "MessageDTOMap": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "RegisterUserDTO": {
+        "required": [
+          "address",
+          "city",
+          "email",
+          "name",
+          "password",
+          "phone"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string",
+            "enum": [
+              "MEDELLIN",
+              "PEREIRA",
+              "BOGOTA",
+              "ARMENIA",
+              "MANIZALES",
+              "CALI"
+            ]
+          },
+          "address": {
+            "type": "string"
+          },
+          "phone": {
+            "maxLength": 10,
+            "minLength": 10,
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "maxLength": 16,
+            "minLength": 8,
+            "type": "string"
+          }
+        }
+      },
+      "LogInDTO": {
+        "required": [
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "maxLength": 16,
+            "minLength": 8,
+            "type": "string"
+          }
+        }
+      },
+      "MessageDTOTokenDTO": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "message": {
+            "$ref": "#/components/schemas/TokenDTO"
+          }
+        }
+      },
+      "TokenDTO": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "ViewReportDTO": {
+        "required": [
+          "adminId",
+          "categoryName",
+          "endDate",
+          "startDate"
+        ],
+        "type": "object",
+        "properties": {
+          "adminId": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "categoryName": {
+            "type": "string"
+          }
+        }
+      },
+      "RefuseReportDTO": {
+        "type": "object",
+        "properties": {
+          "refuseMotive": {
+            "type": "string"
+          },
+          "reportId": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          }
+        }
+      },
+      "CategoryDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "MessageDTOUserInfoDTO": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "message": {
+            "$ref": "#/components/schemas/UserInfoDTO"
+          }
+        }
+      },
+      "UserInfoDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "Category": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/ObjectId"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "Location": {
+        "type": "object",
+        "properties": {
+          "latitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "MessageDTOReportInfoDTO": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "message": {
+            "$ref": "#/components/schemas/ReportInfoDTO"
+          }
+        }
+      },
+      "ObjectId": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ReportInfoDTO": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "category": {
+            "$ref": "#/components/schemas/Category"
+          },
+          "description": {
+            "type": "string"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "imageUrl": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "userId": {
+            "type": "string"
+          },
+          "reportStatus": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "RESOLVED",
+              "VERIFIED",
+              "REFUSED",
+              "DELETED"
+            ]
+          }
+        }
+      },
+      "MessageDTOListReportStatus": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "PENDING",
+                "RESOLVED",
+                "VERIFIED",
+                "REFUSED",
+                "DELETED"
+              ]
+            }
+          }
+        }
+      },
+      "MessageDTOListCommentDTO": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommentDTO"
+            }
+          }
+        }
+      },
+      "MessageDTOListCategoryDTO": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CategoryDTO"
+            }
+          }
+        }
+      },
+      "MessageDTOListCity": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "MEDELLIN",
+                "PEREIRA",
+                "BOGOTA",
+                "ARMENIA",
+                "MANIZALES",
+                "CALI"
+              ]
+            }
+          }
+        }
+      },
+      "MessageDTOListUserInfoDTO": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserInfoDTO"
+            }
+          }
+        }
+      },
+      "MessageDTOListReportInfoDTO": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReportInfoDTO"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
