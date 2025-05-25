@@ -1,6 +1,6 @@
 // URL base del backend
 // Usa variable de entorno o valor por defecto
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://192.168.80.15:8080/api";
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://social-reports.onrender.com/api";
 
 // Helper para peticiones fetch
 export async function fetcher<T>(

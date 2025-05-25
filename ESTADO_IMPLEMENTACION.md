@@ -40,22 +40,13 @@
 
 ---
 
-### Resumen
+## ¿Qué tanto falta del proyecto?
 
-**Tienes implementado:**
-- Login, registro, activación de cuenta, cambio de contraseña, marcar como importante, comentar, obtener reporte, resolver reporte, ver todas las categorías, cambiar estado de reporte, informes/PDF.
+Actualmente tienes implementadas las funciones básicas de autenticación, gestión mínima de reportes y categorías, y generación de informes. Sin embargo, aún falta una parte importante para considerar el proyecto como completo:
 
-**Te falta o está incompleto:**
-- Gestión de cuenta (editar/eliminar)
-- Crear reporte
-- Gestión de reportes (editar/eliminar)
-- Obtener comentarios completos
-- Obtener mis reportes
-- Obtener reportes cercanos
-- Notificaciones
-- Todos los reportes (moderador)
-- Gestión de categorías (crear/editar/eliminar)
-- Tests JUnit
-- API completa/documentada
-- Spring Security completo
-- Extras
+- **Faltan varias funciones clave para el usuario:** gestión completa de cuenta, creación y edición/eliminación de reportes, ver solo los reportes propios, reportes cercanos, notificaciones y mostrar todos los comentarios.
+- **Para el moderador:** falta la vista de todos los reportes y la gestión completa de categorías.
+- **A nivel técnico:** faltan pruebas unitarias, endpoints/documentación de la API, detalles de seguridad con Spring Security y extras opcionales.
+
+**En resumen:**  
+El proyecto está aproximadamente a un 60% de avance. Las bases están listas, pero faltan varias funcionalidades esenciales y detalles técnicos para considerarlo terminado y robusto.
