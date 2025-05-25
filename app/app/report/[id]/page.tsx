@@ -21,11 +21,14 @@ async function getComments(id: string) {
   return res.json();
 }
 
-export default async function Page({ params }: {params:{id: string}}) {
-  if (!params || !params.id) {
+export default async function Page({ params }: {
+  params: Promise<{ id: string }>
+}) {
+    const { id } = await params;
+
+  if (!params || !id) {
     return <div className="text-red-500">No se pudo cargar el reporte.</div>;
   }
-  const { id } = params;
   let report: {
     title: string;
     category?: { name: string };
