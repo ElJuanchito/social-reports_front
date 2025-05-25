@@ -6,6 +6,7 @@ export interface LoginUserDto {
 }
 
 export interface TokenDto {
+  message: {token: string};
   token: string;
 }
 

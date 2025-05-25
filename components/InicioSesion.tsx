@@ -164,16 +164,16 @@ function Signup({ initialEmail = "" }: { initialEmail?: string }) {
       try {
         const { getCities } = await import("./services/auth");
         const data = await getCities();
-        // Corrige para soportar ambos formatos de respuesta
+        // Normaliza la respuesta para evitar errores de tipos
+        let cities: string[] = [];
         if (Array.isArray(data)) {
-          setCities(data);
-        } else if (Array.isArray(data.cities)) {
-          setCities(data.cities);
-        } else if (Array.isArray(data.message)) {
-          setCities(data.message);
-        } else {
-          setCities([]);
+          cities = data;
+        } else if (data && Array.isArray(data.cities)) {
+          cities = data.cities;
+        } else if (data && Array.isArray(data.message)) {
+          cities = data.message;
         }
+        setCities(cities.filter(Boolean));
       } catch {
         setCities([]);
       }
