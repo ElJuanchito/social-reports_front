@@ -134,6 +134,11 @@ export async function updateUser(data: { dto: UpdateUserDto; request: Record<str
 
 
 // Obtener ciudades
-export async function getCities(): Promise<string[]> {
+export async function getCities(): Promise<CitiesDto> {
     return fetcher(`${API_BASE_URL}/auth/cities`);
+}
+
+interface CitiesDto{
+  message: string[];
+  error: boolean[];
 }

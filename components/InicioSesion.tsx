@@ -164,16 +164,8 @@ function Signup({ initialEmail = "" }: { initialEmail?: string }) {
       try {
         const { getCities } = await import("./services/auth");
         const data = await getCities();
-        // Normaliza la respuesta para evitar errores de tipos
-        let cities: string[] = [];
-        if (Array.isArray(data)) {
-          cities = data;
-        } else if (data && Array.isArray(data.cities)) {
-          cities = data.cities;
-        } else if (data && Array.isArray(data.message)) {
-          cities = data.message;
-        }
-        setCities(cities.filter(Boolean));
+        // El backend retorna { error: boolean, message: string[] }
+        setCities(Array.isArray(data.message) ? data.message : []);
       } catch {
         setCities([]);
       }
